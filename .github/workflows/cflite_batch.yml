@@ -1,8 +1,10 @@
 name: ClusterFuzzLite batch fuzzing
 on:
-  schedule:
-    - cron: '0 0/1 * * *'  # Every 1 hour. Change this to whatever is suitable.
-permissions: read-all
+  #schedule:
+  #  - cron: '0 0/1 * * *'  # Every 1 hour. Change this to whatever is suitable.
+  push:
+    branches:
+      - main  # Use your actual default branch here.permissions: read-allpermissions: read-all
 jobs:
   BatchFuzzing:
     runs-on: ubuntu-latest
@@ -30,6 +32,6 @@ jobs:
         sanitizer: ${{ matrix.sanitizer }}
         # Optional but recommended: For storing certain artifacts from fuzzing.
         # See later section on "Git repo for storage".
-        storage-repo: https://${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/OWNER/STORAGE-REPO-NAME.git
+        # storage-repo: https://${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/OWNER/STORAGE-REPO-NAME.git
         # storage-repo-branch: main   # Optional. Defaults to "main"
         # storage-repo-branch-coverage: gh-pages  # Optional. Defaults to "gh-pages".
